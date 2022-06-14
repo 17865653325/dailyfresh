@@ -16,13 +16,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('tinymce/', include(('tinymce.urls', 'tinymce'))),  # 富文本编辑器
+#     # todo 定义路由的方式
+#     path(r'^user/', include(('user.urls', 'user'), namespace='user')),  # 用户模块
+#     path('cart/', include(('cart.urls', 'cart'), namespace='cart')),  # 购物车模块
+#     path('order/', include(('order.urls', 'order'), namespace='order')),  # 订单模块
+#     path('', include(('goods.urls', 'goods'), namespace='goods')),  # 商品模块
+# ]
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('tinymce/', include(('tinymce.urls', 'tinymce'))),  # 富文本编辑器
-    # todo 定义路由的方式
-    path('user/', include(('user.urls', 'user'), namespace='user')),  # 用户模块
-    path('cart/', include(('cart.urls', 'cart'), namespace='cart')),  # 购物车模块
-    path('order/', include(('order.urls', 'order'), namespace='order')),  # 订单模块
-    path('', include(('goods.urls', 'goods'), namespace='goods')),  # 商品模块
+    path(r'admin/', admin.site.urls),
+    path(r'tinymce/', include('tinymce.urls')),  # 富文本编辑器
+    # todo 定义路由的方式   将goods放在最底下，url的匹配从上往下，如果前面匹配后面的就不走了
+    path(r'user/', include(('user.urls', 'user'), namespace='user')),  # 用户模块
+    path(r'cart/', include(('cart.urls', 'cart'), namespace='cart')),  # 购物车模块
+    path(r'order/', include(('order.urls', 'order'),  namespace='order')),  # 订单模块
+    path(r'', include(('goods.urls', 'goods'), namespace='goods')),  # 商品模块
 ]

@@ -38,12 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tinymce',
     # 自定义应用
     'user',  # 用户模块
     'goods',  # 商品模块
     'cart',  # 购物车模块
     'order',  # 订单模块
-    'tinymce'
 ]
 
 # 第三步 在setting中继续配置富文本编辑器
@@ -137,5 +137,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # django认证系统使用的模型类
-# 作用：生成我们所需的模型类对应的表
+# 作用：替换django默认的user表， 默认的是auth_user表。
 AUTH_USER_MODEL = 'user.User'
